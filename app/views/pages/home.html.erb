@@ -1,0 +1,13 @@
+<h1>Welcome</h1>
+
+<% if current_user %>
+    <div> Hello <%= current_user.name %></div>
+    <%= image_tag(current_user.image) %>
+<% end %>
+<% unless current_user %>
+  <%= link_to image_tag("/facebook.png",size: "200x50", :alt => "Image Description", :class => "css"), user_facebook_omniauth_authorize_path %>
+  <%= link_to image_tag("/google.png",size: "200x50", :alt => "Image Description", :class => "css"), user_google_oauth2_omniauth_authorize_path %>
+
+<% else %>
+  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+<% end %>
